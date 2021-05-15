@@ -2,9 +2,6 @@ init:
 	cp -n ./.env.dist ./.env 2>/dev/null || :
 	/bin/bash install.sh \
 
-php:
-	docker-compose exec php sh
-
 up:
 	docker-compose up -d
 
