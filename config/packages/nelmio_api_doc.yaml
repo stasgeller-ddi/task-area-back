@@ -1,0 +1,53 @@
+nelmio_api_doc:
+    areas:
+        path_patterns:
+            - ^((?!/api/doc).)*$
+    documentation:
+        host: ['%host%']
+        schemes: [http, https]
+        info:
+            title: Task Area
+            version: 1.0.0
+        securityDefinitions:
+            Bearer:
+                type: apiKey
+                description: 'Value: Bearer {jwt}'
+                name: Authorization
+                in: header
+        security:
+            - Bearer: []
+        definitions:
+            AccessError:
+                type: "object"
+                properties:
+                    error:
+                        type: "string"
+                    error_description:
+                        type: "string"
+            AccessToken:
+                type: "object"
+                properties:
+                    access_token:
+                        type: "string"
+                    expires_in:
+                        type: "integer"
+                    token_type:
+                        type: "string"
+                    scope:
+                        type: "string|null"
+                    refresh_token:
+                        type: "string"
+            ErrorList:
+                type: "object"
+                properties:
+                    errors:
+                        type: "array"
+                        items:
+                            $ref: "#/definitions/ErrorModel"
+            ErrorModel:
+                type: "object"
+                properties:
+                    field:
+                        type: "string"
+                    message:
+                        type: "string"
